@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Details</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="form-field">
+      <div class="addPerson">
+        <div class="header">
+          <h3 class="slider-head1">Add Payment Details</h3>
+          <a href="javascript:void(0)" id="closeButton1" class="button-close">
+            <img src="assets/close.svg" />
+          </a>
+        </div>
+
+        <!-- <hr class="separator" /> -->
+
+        <div class="form-row">
+          <div class="inputBox">
+            <input type="number" required="required" id="memberIdInput" />
+            <span>Member Id</span>
+          </div>
+          <div class="inputBox">
+            <input type="text" required="required" id="nameInput" />
+            <span>Name</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="inputBox">
+            <input type="date" required="required" id="paidOnInput" />
+            <span>Paid On</span>
+          </div>
+          <div class="inputBox">
+            <input
+              type="number"
+              required="required"
+              id="paymentInput"
+              step="0.01"
+            />
+            <span>Amount Paid</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="inputBox">
+            <input
+              type="number"
+              required="required"
+              id="balanceInput"
+              step="0.01"
+            />
+            <span>Balance</span>
+          </div>
+          <div class="inputBox">
+            <select required="required" id="paymentTypeInput">
+              <option value="" disabled selected></option>
+              <option value="cash">Cash</option>
+              <option value="card">Card</option>
+              <option value="upi">UPI</option>
+            </select>
+            <span>Payment Type</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="inputBox">
+            <select required="required" id="paymentStatusInput">
+              <option value="" disabled selected></option>
+              <option value="partially paid">Partially Paid</option>
+              <option value="fully paid">Fully Paid</option>
+              <option value="unpaid">Unpaid</option>
+            </select>
+            <span>Payment Status</span>
+          </div>
+          <div class="inputBox">
+            <input type="date" required="required" id="expiryDateInput" />
+            <span>Expires On</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="inputBox">
+            <input type="number" required="required" id="phoneNumberInput" pattern="\d{10}" maxlength="10"/>
+            <span>Phone No.</span>
+          </div>
+        </div>
+
+        <hr class="separator" />
+
+        <div class="form-row">
+          <div class="inputBox">
+            <input type="text" required="required" id="offerInput" />
+            <span>Offer</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="inputBox">
+            <input
+              type="date"
+              required="required"
+              id="validityStartDateInput"
+            />
+            <span>Starts On</span>
+          </div>
+          <div class="inputBox">
+            <input type="date" required="required" id="validityEndDateInput" />
+            <span>Ends On</span>
+          </div>
+        </div>
+
+        <hr class="separator" />
+
+        <div class="form-row">
+          <button class="button-85" id="addPersonBtn" > 
+          <!--onclick="addPerson()"-->
+            Add Member
+          </button>
+
+          <input type="hidden" id="editIndex" />
+        </div>
+      </div>
+    </div>
+
+    <div class="total-row">
+      <div class="header">
+        <h3 class="slider-head2">View Total</h3>
+        <a href="javascript:void(0)" id="closeButton2" class="button-close">
+          <img src="assets/close.svg" />
+        </a>
+      </div>
+
+      <!-- <hr class="separator" /> -->
+
+      <div class="form-row">
+        <div class="inputBox">
+          <input type="date" required="required" id="startDateInput" />
+          <span>From</span>
+        </div>
+        <div class="inputBox">
+          <input type="date" required="required" id="endDateInput" />
+          <span>To</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="inputBox">
+          <select required="required" id="totalPaymentType">
+            <option value="" disabled selected></option>
+            <option value="cash">Cash</option>
+            <option value="card">Card</option>
+            <option value="upi">UPI</option>
+            <option value="all">All</option>
+          </select>
+          <span>Payment Type</span>
+        </div>
+      </div>
+
+      <hr class="separator" />
+
+      <div class="displayTotal">
+        <span>Total Amount: ₹ <span id="totalAmount">0.00</span></span>
+      </div>
+
+      <hr class="separator" />
+
+      <div class="form-row">
+        <button class="button-85" onclick="calculateTotal()">Calculate</button>
+      </div>
+    </div>
+
+    <div class="Filter-records">
+      <div class="header">
+        <h3 class="slider-head3">Filter Records</h3>
+        <a href="javascript:void(0)" id="closeButton3" class="button-close">
+          <img src="assets/close.svg" />
+        </a>
+      </div>
+
+      <!-- <hr class="separator" /> -->
+
+      <div class="Options">
+        <div class="section">
+          <div class="filterOption" id="Plan">
+            <span>Plan</span>
+            <label class="switch">
+              <input type="checkbox" id="PlanSwitch" />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="filterOption" id="Offer">
+            <span>Offer</span>
+            <label class="switch">
+              <input type="checkbox" id="OfferSwitch" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <hr class="separator" />
+
+        <div class="section">
+          <div class="filterOption" id="About-to-expire">
+            <span>
+              <div id="content">
+                About to expire
+                <div class="sub-section">
+                  <img id="arrowicon1" src="assets/right-arrow.svg" />
+                </div>
+              </div>
+              <div id="sub-section-content">
+                in <input type="number" id="days-input" /> days.
+              </div>
+            </span>
+            <label class="switch" id="About-to-expire-Switch-div">
+              <input type="checkbox" id="About-to-expire-Switch" />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="filterOption" id="Expired">
+            <span>Expired</span>
+            <label class="switch">
+              <input type="checkbox" id="ExpiredSwitch" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="main">
+      <div class="sideNavbar">
+        <button id="openbtn1" class="openbtn" onclick="openMethod1()">
+          <img src="assets/add-new-user.svg" />
+        </button>
+        <button id="openbtn2" class="openbtn" onclick="openMethod2()">
+          <img src="assets/coin-bag.svg" />
+        </button>
+        <button id="openbtn3" class="openbtn" onclick="openMethod3()">
+          <img src="assets/filter.svg" />
+        </button>
+      </div>
+      <div class="main-head">
+        <h3>Payment Details</h3>
+        <div class="removeFilters" id="removeFilters">Remove Filters</div>
+        <!-- Search Bar start -->
+        <div class="search-bar">
+          <!-- Dropdown start -->
+          <div class="dropdown">
+            <div id="search-drop-text" class="dropdown-text">
+              <span id="searchspan">Phone Number</span>
+              <i id="arrowicon" class="fas fa-chevron-down"></i>
+            </div>
+            <ul id="searchlist" class="dropdown-list">
+              <li class="search-dropdown-list-item">Phone Number</li>
+              <li class="search-dropdown-list-item">Name</li>
+              <li class="search-dropdown-list-item">Payment status</li>
+              <li class="search-dropdown-list-item">Member Id</li>
+              <!-- <li class="search-dropdown-list-item">Paid On</li> -->
+              <li class="search-dropdown-list-item">Amount Paid</li>
+              <li class="search-dropdown-list-item">Payment type</li>
+              <li class="search-dropdown-list-item">Offer</li>
+            </ul>
+          </div>
+          <!-- Dropdown ends -->
+
+          <!-- Search box input start -->
+          <div class="search-box">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search by Phone Number..."
+            />
+            <span class="close-icon" id="closeIcon"></span>
+            <div id="searchicon"><i class="fas fa-magnifying-glass"></i></div>
+          </div>
+          <!-- Search box input ends -->
+        </div>
+        <!-- Search Bar ends -->
+      </div>
+      <div class="SliderWindow-Background"><hr class="Vseparator" /></div>
+      <div id="tableArea">
+        <table id="peopleTable">
+          <thead>
+            <tr>
+              <th>Member ID</th>
+              <th>Name</th>
+              <th>Paid On</th>
+              <th>Expiry Date</th>
+              <th>Payment</th>
+              <th>Balance Amount</th>
+              <th>Payment Type</th>
+              <th>Payment Status</th>
+              <th>Phone Number</th>
+              <th>Offer</th>
+              <th>Validity Start Date</th>
+              <th>Validity End Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="peopleTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
